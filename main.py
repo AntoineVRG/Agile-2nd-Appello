@@ -7,6 +7,14 @@
 
 #!/usr/bin/env python
 
+def CatchListFiles(UserInput):
+    if (UserInput == '/exit'):
+        return 0
+    f = open(UserInput + ".txt", "r")
+    print(f.read())
+    return True
+
+
 def UserInterface():
     print("------------------------------------------------------------------")
     print("Hi ! /h or /help if you need the list of the commands")
@@ -25,15 +33,19 @@ def UserHelper():
 
 def UserInputCatch():
     UserCommand = ''
+    AddFiles = ''
     while UserCommand != '/exit':
         UserCommand = input("> ")
         if (UserCommand == '/h' or UserCommand == '/help'):
-            print('help')
+            UserHelper()
         if (UserCommand == '/exit'):
             print('Thanks you, Ciao ! \n')
             break
         if (UserCommand == '/addfiles'):
-            print("Add Files")
+            while (AddFiles != '/exit'):
+                AddFiles = input()
+                CatchListFiles(AddFiles)
+
     return True
 
 
